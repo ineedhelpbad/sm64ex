@@ -1007,11 +1007,11 @@ u32 set_mario_action(struct MarioState *m, u32 action, u32 actionArg) {
 
     // Resets the sound played flags, meaning Mario can play those sound types again.
     m->flags &= ~(MARIO_ACTION_SOUND_PLAYED | MARIO_MARIO_SOUND_PLAYED);
-
+  
     if (!(m->action & ACT_FLAG_AIR)) {
         m->flags &= ~MARIO_UNKNOWN_18;
     }
-
+   
     // Initialize the action information.
     m->prevAction = m->action;
     m->action = action;
@@ -1739,6 +1739,15 @@ s32 execute_mario_action(UNUSED struct Object *o) {
     /**
     * Cheat stuff
     */
+if ((gMarioState->action & ACT_FLYING) == ACT_FLYING|| (gMarioState->action & ACT_SHOT_FROM_CANNON) == ACT_SHOT_FROM_CANNON )
+    {
+            
+    }
+    else
+    {
+        if(gMarioState->flags & MARIO_WING_ONE_SHOT)  gMarioState->flags &= ~ MARIO_WING_CAP | MARIO_WING_ONE_SHOT;
+    }
+    
 
     if (Cheats.EnableCheats)
     {
