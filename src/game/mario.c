@@ -1741,13 +1741,16 @@ s32 execute_mario_action(UNUSED struct Object *o) {
     */
 if ((gMarioState->action & ACT_FLYING) == ACT_FLYING|| (gMarioState->action & ACT_SHOT_FROM_CANNON) == ACT_SHOT_FROM_CANNON )
     {
-            
+          //do nothing  
     }
     else
     {
-        if(gMarioState->flags & MARIO_WING_ONE_SHOT)  gMarioState->flags &= ~ MARIO_WING_CAP | MARIO_WING_ONE_SHOT;
+        if (gMarioState->flags & MARIO_WING_ONE_SHOT) {
+            gMarioState->flags &= ~MARIO_WING_CAP;
+            gMarioState->flags &= ~MARIO_WING_ONE_SHOT;
+        }
     }
-    
+
 
     if (Cheats.EnableCheats)
     {
